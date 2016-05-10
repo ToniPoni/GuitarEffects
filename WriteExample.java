@@ -6,7 +6,7 @@ public class WriteExample
    {
       try
       {
-         int sampleRate = 44100;    // Samples per second
+         int sampleRate = 8000;    // Samples per second
          double duration = 5.0;     // Seconds
 
          // Calculate the number of frames required for specified duration
@@ -16,7 +16,7 @@ public class WriteExample
          WavFile wavFile = WavFile.newWavFile(new File(args[0]), 2, numFrames, 16, sampleRate);
 
          // Create a buffer of 100 frames
-         int buffLen = 100;
+         int buffLen = 4096;
          double[][] buffer = new double[2][buffLen];
 
          // Initialise a local frame counter
@@ -34,7 +34,7 @@ public class WriteExample
             for (int s=0 ; s<toWrite ; s++, frameCounter++)
             {
                buffer[0][s] = Math.sin(2.0 * Math.PI * 300 * frameCounter / sampleRate);
-               buffer[1][s] = Math.sin(2.0 * Math.PI * 500 * frameCounter / sampleRate);
+               buffer[1][s] = Math.sin(2.0 * Math.PI * 900 * frameCounter / sampleRate);
             }
             Double [] channel1 = new Double [buffLen];
             Double [] channel2 = new Double [buffLen];
@@ -59,7 +59,7 @@ public class WriteExample
 
             // Write the buffer
 
-            wavFile.writeFrames(buffer, toWrite);
+            wavFile.writeFrames(transBuffer, toWrite);
          }
 
          // Close the wavFile
