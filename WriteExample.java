@@ -6,8 +6,8 @@ public class WriteExample
    {
       try
       {
-         int sampleRate = 8000;    // Samples per second
-         double duration = 5.0;     // Seconds
+         int sampleRate = 50000;    // Samples per second
+         double duration = 3.0;     // Seconds
 
          // Calculate the number of frames required for specified duration
          long numFrames = (long)(duration * sampleRate);
@@ -45,9 +45,9 @@ public class WriteExample
                channel2[i] = buffer[1][i];
             }
 
-            Echo echo = new Echo(sampleRate);
-            Double[] newChanel1 = echo.transform(channel1);
-            Double[] newChanel2 = echo.transform(channel2);
+            Reverb reverb = new Reverb(sampleRate);
+            Double[] newChanel1 = reverb.transform(channel1);
+            Double[] newChanel2 = reverb.transform(channel2);
             double[][] transBuffer = new double[2][newChanel1.length];
 
 
